@@ -1,0 +1,20 @@
+[
+ %% SASL config
+ {sasl, [
+         {sasl_error_logger, {file, "<%= File.join(@log_directory, 'sasl-error.log') %>"}},
+         {errlog_type, error},
+         {error_logger_mf_dir, "<%= File.join(@log_directory, 'sasl') %>"},      % Log directory
+         {error_logger_mf_maxbytes, 10485760},   % 10 MB max file size
+         {error_logger_mf_maxfiles, 5}           % 5 files max
+        ]},
+
+ {estatsd, [
+            {udp_listen_port, <%= @udp_listen_port %> },
+            {udp_recbuf, <%= @udp_recbuf %> },
+            {udp_max_batch_size, <%= @udp_max_batch_size %> },
+            {udp_max_batch_age, <%= @udp_max_batch_age %> },
+            {graphite_port, <%= @graphite_port %> },
+            {graphite_host, "<%= @graphite_host %>" },
+            {flush_interval, <%= @flush_interval %> }
+           ]}
+].

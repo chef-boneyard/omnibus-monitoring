@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Perform necessary monitoring setup steps after package is installed.
+#
+
+PROGNAME=$(basename $0)
+
+function error_exit
+{
+	echo "${PROGNAME}: ${1:-"Unknown Error"}" 1>&2
+	exit 1
+}
+
+ln -sf /opt/opscode-monitoring/bin/opscode-monitoring-ctl /usr/bin || error_exit "Cannot link opscode-monitoring-ctl in /usr/bin"
+
+if [ -e /etc/opscode-monitoring/opscode-monitoring-running.json ]; then
+  echo -e "\033[1mYou have upgraded the Push Jobs Server!\033[0m"
+  echo
+  echo "The next step in the upgrade process is to run:"
+  echo
+  echo -e "\033[1;31mopscode-monitoring-ctl reconfigure\033[0m"
+else
+  echo -e "\033[1mThank you for installing the Opscode monitoring tools addon!\033[0m"
+fi
+
+exit 0
+
