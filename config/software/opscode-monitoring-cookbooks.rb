@@ -19,7 +19,7 @@ name "opscode-monitoring-cookbooks"
 
 dependencies [ "rsync" ]
 
-source :path => File.expand_path("files/opscode-monitoring-cookbooks", Omnibus.root)
+source :path => File.expand_path("files/cookbooks", Omnibus.root)
 
 build do
   command "mkdir -p #{install_dir}/embedded/cookbooks"

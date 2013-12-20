@@ -19,7 +19,7 @@ name "opscode-monitoring-ctl"
 
 dependencies [ "rsync", "omnibus-ctl" ]
 
-source :path => File.expand_path("files/opscode-monitoring-ctl-commands", Omnibus.root)
+source :path => File.expand_path("files/ctl-commands", Omnibus.root)
 
 build do
   block do
