@@ -16,29 +16,31 @@
 #
 
 name "opscode-monitoring"
+maintainer 'Chef, Inc.'
+homepage 'http://www.getchef.com'
 
 replaces        "opscode-monitoring"
 install_path    "/opt/opscode-monitoring"
 build_version Omnibus::BuildVersion.new.semver
 build_iteration "1"
 
-deps = []
+# creates required build directories
+dependency "preparation"
 
 # global
-deps << "chef" # for embedded chef-solo
-deps << "preparation"
+dependency "chef-gem" # for embedded chef-solo
+#
 #deps << "python"
-deps << "opscode-monitoring-cookbooks"
-deps << "opscode-monitoring-scripts"
-deps << "opscode-monitoring-ctl"
-deps << "runit"
+dependency "opscode-monitoring-cookbooks"
+dependency "opscode-monitoring-scripts"
+dependency "opscode-monitoring-ctl"
+dependency "runit"
 
-deps << "estatsd"
+dependency "estatsd"
 
 # version manifest file
-deps << "version-manifest"
+dependency "version-manifest"
 
-dependencies deps
 
 exclude "\.git*"
 exclude "bundler\/git"
