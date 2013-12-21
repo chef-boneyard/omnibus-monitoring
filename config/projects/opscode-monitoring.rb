@@ -37,6 +37,7 @@ dependency "opscode-monitoring-ctl"
 dependency "runit"
 
 dependency "estatsd"
+dependency "graphite"
 
 # version manifest file
 dependency "version-manifest"
