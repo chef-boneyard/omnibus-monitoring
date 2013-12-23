@@ -48,16 +48,15 @@ link "/opt/opscode-monitoring/embedded/service/estatsd/etc/sys.config" do
   to estatsd_config
 end
 
-runit_service "estatsd" do
-  options({
-    :log_directory => estatsd_log_dir,
-    :svlogd_size => node['monitoring']['estatsd']['svlogd_size'],
-    :svlogd_num  => node['monitoring']['estatsd']['svlogd_num']
-  }.merge(params))
+component_runit_service "estatsd" do
+  log_directory  node['monitoring']['estatsd']['log_directory']
+  svlogd_size    node['monitoring']['estatsd']['log_rotation']['file_maxbytes']
+  svlogd_num     node['monitoring']['estatsd']['log_rotation']['num_to_keep']
+  ha             node['monitoring']['estatsd']['ha']
 end
 
 if node['monitoring']['bootstrap']['enable']
-  execute "/opt/opscode-monitoring/bin/opscode-monitoring-ctl start estatsd" do
+  execute "/opt/opscode/bin/private-chef-ctl start estatsd" do
     retries 20
   end
 end
