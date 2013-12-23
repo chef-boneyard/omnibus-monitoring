@@ -18,5 +18,5 @@
 name "graphite"
 version "master"
 
-dependencies ["python", "rsync", "curl"]
+dependencies ["python", "pip", "rsync", "curl"]
 

@@ -32,10 +32,11 @@ default['monitoring']['user']['shell'] = "/bin/sh"
 default['monitoring']['user']['home'] = "/opt/opscode/embedded"
 
 default['monitoring']['estatsd']['enable'] = true
+default['monitoring']['estatsd']['ha'] = false
 default['monitoring']['estatsd']['dir'] = "/var/opt/opscode-monitoring/estatsd"
 default['monitoring']['estatsd']['log_directory'] = "/var/log/opscode-monitoring/estatsd"
-default['monitoring']['estatsd']['svlogd_size'] = 1000000
-default['monitoring']['estatsd']['svlogd_num'] = 10
+default['monitoring']['estatsd']['log_rotation']['file_maxbytes'] = 104857600
+default['monitoring']['estatsd']['log_rotation']['num_to_keep'] = 10
 
 default['monitoring']['estatsd']['udp_listen_port'] = 3344
 default['monitoring']['estatsd']['udp_recbuf'] = 524288
