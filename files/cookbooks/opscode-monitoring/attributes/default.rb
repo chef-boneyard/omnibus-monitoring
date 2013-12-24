@@ -34,7 +34,7 @@ default['monitoring']['user']['home'] = "/opt/opscode/embedded"
 default['monitoring']['estatsd']['enable'] = true
 default['monitoring']['estatsd']['ha'] = false
 default['monitoring']['estatsd']['dir'] = "/var/opt/opscode-monitoring/estatsd"
-default['monitoring']['estatsd']['log_directory'] = "/var/log/opscode/estatsd"
+default['monitoring']['estatsd']['log_directory'] = "/var/log/opscode-monitoring/estatsd"
 default['monitoring']['estatsd']['log_rotation']['file_maxbytes'] = 104857600
 default['monitoring']['estatsd']['log_rotation']['num_to_keep'] = 10
 
@@ -66,7 +66,7 @@ default['monitoring']['graphite']['storage_aggregation'] = nil
 # Carbon (Graphite)
 default['monitoring']['carbon']['enable'] = true
 default['monitoring']['carbon']['ha'] = false
-default['monitoring']['carbon']['log_directory'] = "/var/log/opscode/carbon-cache"
+default['monitoring']['carbon']['log_directory'] = "/var/log/opscode-monitoring/carbon-cache"
 default['monitoring']['carbon']['log_rotation']['file_maxbytes'] = 104857600
 default['monitoring']['carbon']['log_rotation']['num_to_keep'] = 10
 default['monitoring']['carbon']['line_receiver_interface'] =   '0.0.0.0'
