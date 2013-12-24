@@ -18,7 +18,11 @@
 name "graphite"
 version "0.9.12"
 
-dependencies ["python", "pip", "rsync", "curl"]
+dependency "python"
+dependency "pip"
+dependency "python-django"
+dependency "python-django-tagging"
+dependency "python-cairo"
 
 build do
   command "#{install_dir}/embedded/bin/pip install -I --build #{project_dir} \
