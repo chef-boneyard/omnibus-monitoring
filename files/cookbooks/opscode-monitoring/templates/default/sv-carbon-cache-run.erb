@@ -1,0 +1,3 @@
+#!/bin/sh
+exec 2>&1
+exec chpst -u <%= node['monitoring']['user']['username'] %> -l <%= node['monitoring']['graphite']['storage_dir'] %>/carbon-cache.lock -- <%= node['monitoring']['graphite']['base_dir']%>/bin/carbon-cache.py --config <%= node['monitoring']['graphite']['var_dir'] %>/conf/carbon.conf  --pid <%= node['monitoring']['graphite']['storage_dir'] %>/carbon-cache-a.pid --debug start
