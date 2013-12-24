@@ -38,11 +38,10 @@ default['monitoring']['estatsd']['log_directory'] = "/var/log/opscode/estatsd"
 default['monitoring']['estatsd']['log_rotation']['file_maxbytes'] = 104857600
 default['monitoring']['estatsd']['log_rotation']['num_to_keep'] = 10
 
-default['monitoring']['estatsd']['udp_listen_port'] = 3344
+default['monitoring']['estatsd']['udp_listen_port'] = 9466
 default['monitoring']['estatsd']['udp_recbuf'] = 524288
 default['monitoring']['estatsd']['udp_max_batch_size'] = 100
 default['monitoring']['estatsd']['udp_max_batch_age'] = 2000
-default['monitoring']['estatsd']['udp_listen_port'] = 10000
 default['monitoring']['estatsd']['graphite_port'] = 2003
 default['monitoring']['estatsd']['graphite_host'] = '127.0.0.1'
 default['monitoring']['estatsd']['flush_interval'] = 10000
