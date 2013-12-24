@@ -15,14 +15,17 @@
 # limitations under the License.
 #
 
-name "python-twisted"
-version "11.1.0"
+name "python-sqlite"
+version "2.6.3"
 
-dependencies ["python", "pip"]
+dependency "python"
+dependency "pip"
+dependency "sqlite"
 
 build do
   command "#{install_dir}/embedded/bin/pip install -I --build #{project_dir} \
            --install-option=\"--prefix=#{install_dir}/embedded\" \
-           twisted==#{version}"
+           --install-option=\"--install-data=#{install_dir}/embedded/share/doc\" \
+           pysqlite==#{version}"
 end
 
