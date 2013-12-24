@@ -29,8 +29,7 @@ dependency "preparation"
 
 # global
 dependency "chef-gem" # for embedded chef-solo
-#
-#deps << "python"
+
 dependency "opscode-monitoring-cookbooks"
 dependency "opscode-monitoring-scripts"
 dependency "opscode-monitoring-ctl"
