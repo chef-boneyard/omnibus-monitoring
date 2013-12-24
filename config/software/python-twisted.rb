@@ -18,7 +18,8 @@
 name "python-twisted"
 version "11.1.0"
 
-dependencies ["python", "pip"]
+dependency "python"
+dependency "pip"
 
 build do
   command "#{install_dir}/embedded/bin/pip install -I --build #{project_dir} \

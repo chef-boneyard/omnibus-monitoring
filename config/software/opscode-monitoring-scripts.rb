@@ -17,7 +17,7 @@
 
 name "opscode-monitoring-scripts"
 
-dependencies [ "rsync" ]
+dependency "rsync"
 
 source :path => File.expand_path("files/scripts", Omnibus.root)
 

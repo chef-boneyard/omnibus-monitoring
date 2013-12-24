@@ -18,7 +18,8 @@
 name "python-django-tagging"
 version "0.3.1"
 
-dependencies ["python", "pip"]
+dependency "python"
+dependency "pip"
 
 build do
   command "#{install_dir}/embedded/bin/pip install -I --build #{project_dir} \

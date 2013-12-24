@@ -18,7 +18,9 @@
 name "estatsd"
 version "master"
 
-dependencies ["erlang", "rebar", "rsync", "curl"]
+dependency "erlang"
+dependency "rebar"
+dependency "rsync"
 
 # TODO - use public GIT URL when repo made public
 source :git => "git@github.com:opscode/estatsd.git"
