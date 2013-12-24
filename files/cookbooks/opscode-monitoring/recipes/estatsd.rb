@@ -56,7 +56,7 @@ component_runit_service "estatsd" do
 end
 
 if node['monitoring']['bootstrap']['enable']
-  execute "/opt/opscode/bin/private-chef-ctl start estatsd" do
+  execute "/opt/opscode-monitoring/bin/opscode-monitoring-ctl start estatsd" do
     retries 20
   end
 end

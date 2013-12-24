@@ -15,32 +15,15 @@
 # limitations under the License.
 #
 
-name "opscode-monitoring"
-maintainer 'Chef, Inc.'
-homepage 'http://www.getchef.com'
+name "python-django-tagging"
+version "0.3.1"
 
-replaces        "opscode-monitoring"
-install_path    "/opt/opscode-monitoring"
-build_version Omnibus::BuildVersion.new.semver
-build_iteration "1"
+dependency "python"
+dependency "pip"
 
-# creates required build directories
-dependency "preparation"
+build do
+  command "#{install_dir}/embedded/bin/pip install -I --build #{project_dir} \
+           --install-option=\"--prefix=#{install_dir}/embedded\" \
+           django-tagging==#{version}"
+end
 
-# global
-dependency "chef-gem" # for embedded chef-solo
-
-dependency "opscode-monitoring-cookbooks"
-dependency "opscode-monitoring-scripts"
-dependency "opscode-monitoring-ctl"
-dependency "runit"
-
-dependency "estatsd"
-dependency "graphite"
-
-# version manifest file
-dependency "version-manifest"
-
-
-exclude "\.git*"
-exclude "bundler\/git"

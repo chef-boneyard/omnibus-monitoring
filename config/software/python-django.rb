@@ -15,32 +15,19 @@
 # limitations under the License.
 #
 
-name "opscode-monitoring"
-maintainer 'Chef, Inc.'
-homepage 'http://www.getchef.com'
+name "python-django"
+version "1.6.1"
 
-replaces        "opscode-monitoring"
-install_path    "/opt/opscode-monitoring"
-build_version Omnibus::BuildVersion.new.semver
-build_iteration "1"
+dependency "python"
+dependency "pip"
 
-# creates required build directories
-dependency "preparation"
+# Install a specific version of Twisted as the latest version doesn't
+# work with django
+dependency "python-twisted"
 
-# global
-dependency "chef-gem" # for embedded chef-solo
+build do
+  command "#{install_dir}/embedded/bin/pip install -I --build #{project_dir} \
+           --install-option=\"--prefix=#{install_dir}/embedded\" \
+           django==#{version}"
+end
 
-dependency "opscode-monitoring-cookbooks"
-dependency "opscode-monitoring-scripts"
-dependency "opscode-monitoring-ctl"
-dependency "runit"
-
-dependency "estatsd"
-dependency "graphite"
-
-# version manifest file
-dependency "version-manifest"
-
-
-exclude "\.git*"
-exclude "bundler\/git"

@@ -16,7 +16,28 @@
 #
 
 name "graphite"
-version "master"
+version "0.9.12"
 
-dependencies ["python", "pip", "rsync", "curl"]
+dependency "python"
+dependency "pip"
+dependency "python-django"
+dependency "python-django-tagging"
+dependency "python-cairo"
+dependency "python-sqlite"
+
+build do
+  command "#{install_dir}/embedded/bin/pip install --build #{project_dir} \
+           --install-option=\"--prefix=#{install_dir}/embedded\" \
+           whisper==#{version}"
+  command "#{install_dir}/embedded/bin/pip install --build #{project_dir} \
+           --install-option=\"--prefix=#{install_dir}/embedded\" \
+           --install-option=\"--install-lib=#{install_dir}/embedded/lib/python2.7/site-packages\" \
+           --install-option=\"--install-data=#{install_dir}/embedded/service/#{name}\" \
+           carbon==#{version}"
+  command "#{install_dir}/embedded/bin/pip install --build #{project_dir} \
+           --install-option=\"--prefix=#{install_dir}/embedded\" \
+           --install-option=\"--install-lib=#{install_dir}/embedded/service/#{name}/webapp\" \
+           --install-option=\"--install-data=#{install_dir}/embedded/service/#{name}\" \
+           graphite-web==#{version}"
+end
 
