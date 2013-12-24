@@ -11,6 +11,6 @@ recipe           "opscode-monitoring", "Configures the Monitoring services from 
   supports os
 end
 
-depends "enterprise"
+depends "runit"
 
 

@@ -54,11 +54,12 @@ directory "/var/opt/opscode-monitoring" do
 end
 
 # Configure and install our runit instance
-include_recipe "enterprise::runit"
+include_recipe "opscode-monitoring::runit"
 
 # Configure Services
 [
   "estatsd",
+  "carbon",
   "bootstrap"
 ].each do |service|
   if node["monitoring"][service]["enable"]
