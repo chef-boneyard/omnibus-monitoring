@@ -5,16 +5,14 @@ with server monitoring services (estatsd, graphite)
 
 # Building omnibus-monitoring
 
-    ./omnibus-build ubuntu-10.04
+    vagrant up PLATFORM
 
-OR
+You will need Vagrant 1.2.1 or greater installed.
 
-    git clone git@github.com:opscode/omnibus-monitoring.git
-    git clone git@github.com:opscode/omnibus-software.git
-    cd omnibus-monitoring
-    cp omnibus.rb.example omnibus.rb
-    bundle install
-    bundle exec vagrant omnibus build ubuntu-10.04 opscode-monitoring
+If the package creation fails, once the error is addressed you can pick up
+where you left off with
+
+    vagrant provision PLATFOMR
 
 Packages will be in pkg/
 
