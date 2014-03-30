@@ -27,8 +27,8 @@ directory "/etc/opscode-monitoring" do
 end.run_action(:create)
 
 Monitoring[:node] = node
-if File.exists?("/etc/opscode-monitoring/opscode-monitoring.rb")
-  Monitoring.from_file("/etc/opscode-monitoring/opscode-monitoring.rb")
+if File.exists?("#{node['monitoring']['etc_path']}/opscode-monitoring.rb")
+  Monitoring.from_file("#{node['monitoring']['etc_path']}/opscode-monitoring.rb")
 end
 node.consume_attributes(Monitoring.generate_config(node['fqdn']))
 

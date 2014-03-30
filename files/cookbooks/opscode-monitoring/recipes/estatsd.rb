@@ -32,11 +32,11 @@ estatsd_sasl_log_dir = File.join(estatsd_log_dir, "sasl")
   end
 end
 
-link "/opt/opscode-monitoring/embedded/service/estatsd/log" do
+link "#{node['monitoring']['install_path']}/embedded/service/estatsd/log" do
   to estatsd_log_dir
 end
 
-template "/opt/opscode-monitoring/embedded/service/estatsd/bin/estatsd" do
+template "#{node['monitoring']['install_path']}/embedded/service/estatsd/bin/estatsd" do
   source "estatsd.erb"
   owner "root"
   group "root"
@@ -54,7 +54,7 @@ template estatsd_config do
   notifies :restart, 'service[estatsd]' if OmnibusHelper.should_notify?("estatsd")
 end
 
-link "/opt/opscode-monitoring/embedded/service/estatsd/etc/sys.config" do
+link "#{node['monitoring']['install_path']}/embedded/service/estatsd/etc/sys.config" do
   to estatsd_config
 end
 
@@ -66,7 +66,7 @@ component_runit_service "estatsd" do
 end
 
 if node['monitoring']['bootstrap']['enable']
-  execute "/opt/opscode-monitoring/bin/opscode-monitoring-ctl start estatsd" do
+  execute "#{node['monitoring']['install_path']}/bin/opscode-monitoring-ctl start estatsd" do
     retries 20
   end
 end

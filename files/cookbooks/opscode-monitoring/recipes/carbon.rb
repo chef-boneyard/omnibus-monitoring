@@ -67,10 +67,8 @@ component_runit_service "carbon-cache" do
 end
 
 if node['monitoring']['bootstrap']['enable']
-  execute "/opt/opscode-monitoring/bin/opscode-monitoring-ctl start carbon-cache" do
+  execute "#{node['monitoring']['install_path']}/bin/opscode-monitoring-ctl start carbon-cache" do
     retries 20
   end
 end
-
-
 

@@ -25,7 +25,7 @@ class OmnibusHelper
   end
 
   def self.check_status(service_name,
-                        path="/opt/opscode-monitoring",
+                        path = "/opt/opscode-monitoring",
                         command="opscode-monitoring-ctl")
     o = Chef::ShellOut.new("#{path}/bin/#{command} status #{service_name}")
     o.run_command
