@@ -24,7 +24,6 @@ project_name = project.name
 
 source :path => File.expand_path("files/cookbooks/#{project_name}", Omnibus.project_root)
 
-
 build do
   command "rm -rf #{install_dir}/embedded/cookbooks || true"
   command "#{install_dir}/embedded/bin/berks vendor #{install_dir}/embedded/cookbooks",
