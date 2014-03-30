@@ -26,8 +26,8 @@ source :path => File.expand_path("files/cookbooks/#{project_name}", Omnibus.proj
 
 
 build do
-  command "mkdir -p #{install_dir}/embedded/cookbooks"
-  command "#{install_dir}/bin/berks install --berksfile=./Berksfile --path=#{install_dir}/embedded/cookbooks",
+  command "rm -rf #{install_dir}/embedded/cookbooks || true"
+  command "#{install_dir}/embedded/bin/berks vendor #{install_dir}/embedded/cookbooks",
           :env => { "RUBYOPT"         => nil,
                     "BUNDLE_BIN_PATH" => nil,
                     "BUNDLE_GEMFILE"  => nil,

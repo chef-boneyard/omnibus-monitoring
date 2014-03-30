@@ -16,7 +16,7 @@
 #
 
 name "opscode-monitoring"
-maintainer 'Chef, Inc.'
+maintainer 'Chef Software, Inc.'
 homepage 'http://www.getchef.com'
 
 install_path    "/opt/opscode-monitoring"

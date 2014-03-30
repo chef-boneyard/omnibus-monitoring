@@ -16,7 +16,7 @@
 #
 
 name "cairo"
-version "1.12.14"
+default_version "1.12.14"
 
 source :url => "http://cairographics.org/releases/cairo-#{version}.tar.xz",
        :md5 => "27b634113d0f52152d60ae8e2ec7daa7"
