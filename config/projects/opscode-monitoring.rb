@@ -19,7 +19,6 @@ name "opscode-monitoring"
 maintainer 'Chef, Inc.'
 homepage 'http://www.getchef.com'
 
-replaces        "opscode-monitoring"
 install_path    "/opt/opscode-monitoring"
 build_version Omnibus::BuildVersion.new.semver
 build_iteration "1"
