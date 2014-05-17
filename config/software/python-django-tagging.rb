@@ -16,7 +16,7 @@
 #
 
 name "python-django-tagging"
-version "0.3.1"
+default_version "0.3.1"
 
 dependency "python"
 dependency "pip"

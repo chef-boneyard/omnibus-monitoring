@@ -42,6 +42,8 @@ dependency "preparation"
 # global
 dependency "chef-gem" # for embedded chef-solo
 
+dependency "bundler"
+
 dependency "opscode-monitoring-cookbooks"
 dependency "opscode-monitoring-scripts"
 dependency "opscode-monitoring-ctl"

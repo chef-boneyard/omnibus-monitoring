@@ -16,7 +16,7 @@
 #
 
 name "python-cairo"
-version "1.10.0"
+default_version "1.10.0"
 
 dependency "python"
 dependency "pip"

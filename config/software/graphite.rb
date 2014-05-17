@@ -16,7 +16,7 @@
 #
 
 name "graphite"
-version "0.9.12"
+default_version "0.9.12"
 
 dependency "python"
 dependency "pip"
