@@ -26,13 +26,11 @@ build_iteration "1"
 # setup version overrides for ruby-2.1 support
 # These are from chefdk and we should check for new
 # versions when chefdb has stabilized
-override :berkshelf, version: "v3.0.0.beta7"
-override :bundler,   version: "1.5.2"
+override :berkshelf, version: "master"
 override :libedit,   version: "20130712-3.1"
 override :libtool,   version: "2.4.2"
 override :libxml2,   version: "2.9.1"
 override :libxslt,   version: "1.1.28"
-override :nokogiri,  version: "1.6.1"
 override :ruby,      version: "2.1.1"
 override :rubygems,  version: "2.2.1"
 override :yajl,      version: "1.2.0"
