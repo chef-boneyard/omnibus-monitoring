@@ -18,7 +18,7 @@
 name "opscode-monitoring-cookbooks"
 
 dependency "rsync"
-dependency "berkshelf"
+dependency "berkshelf2"
 
 project_name = project.name
 
