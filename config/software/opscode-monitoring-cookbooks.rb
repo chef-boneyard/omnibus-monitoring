@@ -25,8 +25,8 @@ project_name = project.name
 source :path => File.expand_path("files/cookbooks/#{project_name}", Omnibus.project_root)
 
 build do
-  command "rm -rf #{install_dir}/embedded/cookbooks || true"
-  command "#{install_dir}/embedded/bin/berks vendor #{install_dir}/embedded/cookbooks",
+  command "mkdir -p #{install_dir}/embedded/cookbooks"
+  command "#{install_dir}/embedded/bin/berks install --berksfile=./Berksfile --path=#{install_dir}/embedded/cookbooks",
           :env => { "RUBYOPT"         => nil,
                     "BUNDLE_BIN_PATH" => nil,
                     "BUNDLE_GEMFILE"  => nil,
@@ -44,6 +44,7 @@ build do
       f.puts "file_cache_path \"\#\{CURRENT_PATH\}/cache\""
       f.puts "cookbook_path CURRENT_PATH"
       f.puts "verbose_logging true"
+      f.puts "ssl_verify_mode :verify_peer"
     end
   end
 end
