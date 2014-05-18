@@ -16,7 +16,7 @@
 #
 
 name "python-sqlite"
-version "2.6.3"
+default_version "2.6.3"
 
 dependency "python"
 dependency "pip"

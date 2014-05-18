@@ -16,7 +16,7 @@
 #
 
 name "pixman"
-version "0.32.4"
+default_version "0.32.4"
 
 source :url => "http://cairographics.org/releases/pixman-#{version}.tar.gz",
        :md5 => "eba449138b972fbf4547a8c152fea162"

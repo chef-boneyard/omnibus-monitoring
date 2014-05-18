@@ -1,5 +1,5 @@
 #
-# Copyright:: Copyright (c) 2012 Opscode, Inc.
+# Copyright:: Copyright (c) 2014 Chef Software, Inc.
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,15 +26,9 @@ directory "/etc/opscode-monitoring" do
   action :nothing
 end.run_action(:create)
 
-# We need to load the private chef configuration
-if File.exists?("/etc/opscode/chef-server-running.json")
-  private_chef = JSON.parse(IO.read("/etc/opscode/chef-server-running.json"))
-end
-node.consume_attributes({"private_chef" => private_chef['private_chef']})
-
 Monitoring[:node] = node
-if File.exists?("/etc/opscode-monitoring/opscode-monitoring.rb")
-  Monitoring.from_file("/etc/opscode-monitoring/opscode-monitoring.rb")
+if File.exists?("#{node['monitoring']['etc_path']}/opscode-monitoring.rb")
+  Monitoring.from_file("#{node['monitoring']['etc_path']}/opscode-monitoring.rb")
 end
 node.consume_attributes(Monitoring.generate_config(node['fqdn']))
 

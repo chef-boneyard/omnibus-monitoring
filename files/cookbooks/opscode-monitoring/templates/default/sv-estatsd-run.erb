@@ -1,4 +1,4 @@
 #!/bin/sh
 exec 2>&1
 
-exec chpst -P -u <%= node['monitoring']['user']['username'] %> -U <%= node['monitoring']['user']['username'] %> env HOME=<%= node['monitoring']['estatsd']['dir'] %> /opt/opscode-monitoring/embedded/service/estatsd/bin/estatsd runit
+exec chpst -P -u <%= node['monitoring']['user']['username'] %> -U <%= node['monitoring']['user']['username'] %> env HOME=<%= node['monitoring']['estatsd']['dir'] %> <%= node['monitoring']['install_path'] %>/embedded/service/estatsd/bin/estatsd runit

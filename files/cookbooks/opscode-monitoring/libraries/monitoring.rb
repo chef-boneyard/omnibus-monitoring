@@ -36,8 +36,9 @@ module Monitoring
 
     def generate_secrets(node_name)
       existing_secrets ||= Hash.new
-      if File.exists?("/etc/opscode-monitoring/opscode-monitoring-secrets.json")
-        existing_secrets = Chef::JSONCompat.from_json(File.read("/etc/opscode-monitoring/opscode-monitoring-secrets.json"))
+      secrets_path = "/etc/opscode-monitoring/opscode-monitoring-secrets.json"
+      if File.exists?(secrets_path)
+        existing_secrets = Chef::JSONCompat.from_json(File.read(secrets_path))
       end
       existing_secrets.each do |k, v|
         v.each do |pk, p|
@@ -46,18 +47,16 @@ module Monitoring
       end
 
       # No secrets yet
-      # Monitoring['postgresql']['sql_password'] ||= generate_hex(50)
-      # Monitoring['postgresql']['sql_ro_password'] ||= generate_hex(50)
+      # e.g Monitoring['postgresql']['sql_ro_password'] ||= generate_hex(50)
 
-      if File.directory?("/etc/opscode-monitoring")
-        File.open("/etc/opscode-monitoring/opscode-monitoring-secrets.json", "w") do |f|
+      if File.directory?('/etc/opscode-monitoring')
+        File.open(secrets_path, "w") do |f|
           f.puts(
             Chef::JSONCompat.to_json_pretty({
                 #'sql_password' => Monitoring['postgresql']['sql_password'],
-                #'sql_ro_password' => Monitoring['postgresql']['sql_ro_password']
             })
           )
-          system("chmod 0600 /etc/opscode-monitoring/opscode-monitoring-secrets.json")
+          system("chmod 0600 #{secrets_path}")
         end
       end
     end

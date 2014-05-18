@@ -19,6 +19,7 @@
 # High level options
 ###
 default['monitoring']['install_path'] = "/opt/opscode-monitoring"
+default['monitoring']['etc_path'] = "/etc/opscode-monitoring"
 default['monitoring']['bootstrap']['enable'] = true
 
 ####

@@ -16,7 +16,7 @@
 #
 
 name "python-twisted"
-version "11.1.0"
+default_version "11.1.0"
 
 dependency "python"
 dependency "pip"

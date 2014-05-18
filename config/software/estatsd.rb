@@ -16,7 +16,7 @@
 #
 
 name "estatsd"
-version "master"
+default_version "master"
 
 dependency "erlang"
 dependency "rebar"

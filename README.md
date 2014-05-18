@@ -1,66 +1,93 @@
-# Omnibus Monitoring
+opscode-monitoring Omnibus project
+===========================
+This project creates full-stack platform-specific packages for
+`opscode-monitoring`!
 
-This repository contains the skeleton for building an Omnibus package
-with server monitoring services (estatsd, graphite)
+Installation
+------------
+You must have a sane Ruby 1.9+ environment with Bundler installed. Ensure all
+the required gems are installed:
 
-# Building omnibus-monitoring
-
-    vagrant up PLATFORM
-
-You will need Vagrant 1.2.1 or greater installed.
-
-If the package creation fails, once the error is addressed you can pick up
-where you left off with
-
-    vagrant provision PLATFOMR
-
-Packages will be in pkg/
-
-## Overrides
-
-For testing and CI purposes, it is sometimes convenient to selectively
-override the installed version of a particular software package
-without having to commit changes to software descriptors (i.e.,
-`config/software/$SOFTWARE.rb` files).  To do this, place a file named
-`omnibus.overrides` in the root of this repository prior to a build.
-The format is a simple, plain-text one; each line contains a software
-name and version, separated by whitespace.  There are no comments, no
-leading whitespace, and no blank lines.  For example:
-
-```
-estatsd my/branch
-oc-monitoring-pedant deadbeef
+```shell
+$ bundle install --binstubs
 ```
 
-The software name must match the name given in the corresponding
-software descriptor file, and the version can be anything accepted by
-Omnibus as a valid version (e.g., branch name, tag name, SHA1, etc.)
+Usage
+-----
+### Build
 
-If present, the versions of the software packages in this file will
-supercede versions in the corresponding software descriptor file.
-Additionally, the information in the generated
-`/opt/opscode-monitoring/version-manifest.txt` file (installed by the
-generated installer) will indicate which (if any) packages had their
-versions overridden, and what the version would have been if it hadn't
-been overridden.
+You create a platform-specific package using the `build project` command:
 
-## Licensing
+```shell
+$ bin/omnibus build opscode-monitoring
+```
 
-See the LICENSE file for details.
+The platform/architecture type of the package created will match the platform
+where the `build project` command is invoked. For example, running this command
+on a MacBook Pro will generate a Mac OS X package. After the build completes
+packages will be available in the `pkg/` folder.
 
-Copyright: Copyright (c) 2012 Opscode, Inc.
-License: Apache License, Version 2.0
+### Clean
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+You can clean up all temporary files generated during the build process with
+the `clean` command:
 
-    http://www.apache.org/licenses/LICENSE-2.0
+```shell
+$ bin/omnibus clean opscode-monitoring
+```
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+Adding the `--purge` purge option removes __ALL__ files generated during the
+build including the project install directory (`/opt/opscode-monitoring`) and
+the package cache directory (`/var/cache/omnibus/pkg`):
 
+```shell
+$ bin/omnibus clean opscode-monitoring --purge
+```
 
+### Help
+
+Full help for the Omnibus command line interface can be accessed with the
+`help` command:
+
+```shell
+$ bin/omnibus help
+```
+
+Kitchen-based Build Environment
+-------------------------------
+Every Omnibus project ships will a project-specific
+[Berksfile](http://berkshelf.com/) that will allow you to build your omnibus projects on all of the projects listed
+in the `.kitchen.yml`. You can add/remove additional platforms as needed by
+changing the list found in the `.kitchen.yml` `platforms` YAML stanza.
+
+This build environment is designed to get you up-and-running quickly. However,
+there is nothing that restricts you to building on other platforms. Simply use
+the [omnibus cookbook](https://github.com/opscode-cookbooks/omnibus) to setup
+your desired platform and execute the build steps listed above.
+
+The default build environment requires Test Kitchen and VirtualBox for local
+development. Test Kitchen also exposes the ability to provision instances using
+various cloud providers like AWS, DigitalOcean, or OpenStack. For more
+information, please see the [Test Kitchen documentation](http://kitchen.ci).
+
+Once you have tweaked your `.kitchen.yml` (or `.kitchen.local.yml`) to your
+liking, you can bring up an individual build environment using the `kitchen`
+command.
+
+```shell
+$ bin/kitchen converge ubuntu-12.04
+```
+
+Then login to the instance and build the project as described in the Usage
+section:
+
+```shell
+$ bundle exec kitchen login ubuntu-12.04
+[vagrant@ubuntu...] $ cd opscode-monitoring
+[vagrant@ubuntu...] $ bundle install
+[vagrant@ubuntu...] $ ...
+[vagrant@ubuntu...] $ bin/omnibus build opscode-monitoring
+```
+
+For a complete list of all commands and platforms, run `kitchen list` or
+`kitchen help`.

@@ -16,7 +16,7 @@
 #
 
 name "sqlite"
-version "3.8.2"
+default_version "3.8.2"
 
 source :url => "http://www.sqlite.org/2013/sqlite-autoconf-3080200.tar.gz",
        :md5 => "f62206713e6a08d4ccbc60b1fd712a1a"

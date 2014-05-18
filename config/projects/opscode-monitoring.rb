@@ -16,18 +16,33 @@
 #
 
 name "opscode-monitoring"
-maintainer 'Chef, Inc.'
+maintainer 'Chef Software, Inc.'
 homepage 'http://www.getchef.com'
 
 install_path    "/opt/opscode-monitoring"
 build_version Omnibus::BuildVersion.new.semver
 build_iteration "1"
 
+# setup version overrides for ruby-2.1 support
+# These are from chefdk and we should check for new
+# versions when chefdb has stabilized
+override :bundler,   version: "1.5.3"
+override :berkshelf, version: "2-0-stable"
+override :libedit,   version: "20130712-3.1"
+override :libtool,   version: "2.4.2"
+override :libxml2,   version: "2.9.1"
+override :libxslt,   version: "1.1.28"
+override :ruby,      version: "2.1.1"
+override :rubygems,  version: "1.8.24" #"2.2.1"
+override :yajl,      version: "1.2.0"
+override :zlib,      version: "1.2.8"
+
 # creates required build directories
 dependency "preparation"
 
 # global
 dependency "chef-gem" # for embedded chef-solo
+
 
 dependency "opscode-monitoring-cookbooks"
 dependency "opscode-monitoring-scripts"
@@ -39,7 +54,6 @@ dependency "graphite"
 
 # version manifest file
 dependency "version-manifest"
-
 
 exclude "\.git*"
 exclude "bundler\/git"
