@@ -3,8 +3,38 @@ opscode-monitoring Omnibus project
 This project creates full-stack platform-specific packages for
 `opscode-monitoring`!
 
+It contains `estatsd` and `graphite` (currently only the `carbon` collector) already configured to gather data from either an Enterprise Chef or Open Source Chef Server.
+
+Configuration
+-------------
+All configuration should be done in `/etc/opscode-monitoring/opscode-monitoring.rb`.
+By default, both `estatsd` and `carbon` are started.
+
+### `estatsd`
+
+To disable `estatsd`, set
+
+```
+    estatsd['enable'] = false
+```
+
+If you wish to use a graphite server on a different host, you can set the `graphite_host`
+and graphite_port` attributes:
+
+```
+    estatsd['graphite_host'] = 'graphite.example.com'
+    estatsd['graphite_port'] = 12003
+```
+
+### `carbon`
+To disable `carbon`, set
+
+```
+    carbon['enable'] = false
+```
+
 Installation
-------------
+============
 You must have a sane Ruby 1.9+ environment with Bundler installed. Ensure all
 the required gems are installed:
 
