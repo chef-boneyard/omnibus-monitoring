@@ -56,10 +56,11 @@ default['monitoring']['graphite']['storage_dir'] = '/var/opt/opscode-monitoring/
 default['monitoring']['graphite']['timezone'] = 'America/Los_Angeles'
 default['monitoring']['graphite']['django_root'] = '@DJANGO_ROOT@'
 default['monitoring']['graphite']['storage_schemas'] = [
+  # 10s:1h,1m:1d,10m:30d,1h:1y,1d:5y (200536 bytes)'
   {
     'name' => 'catchall',
     'pattern' => '^.*',
-    'retentions' => '60:100800,900:63000'
+    'retentions' => '10:360,60:1440,600:4320,3600:8760,86400:1825'
   }
 ]
 default['monitoring']['graphite']['storage_aggregation'] = nil
