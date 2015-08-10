@@ -19,7 +19,7 @@ name "opscode-monitoring"
 maintainer 'Chef Software, Inc.'
 homepage 'http://www.getchef.com'
 
-install_path    "/opt/opscode-monitoring"
+install_dir    "/opt/opscode-monitoring"
 build_version Omnibus::BuildVersion.new.semver
 build_iteration "1"
 
@@ -27,7 +27,6 @@ build_iteration "1"
 # These are from chefdk and we should check for new
 # versions when chefdb has stabilized
 override :bundler,   version: "1.5.3"
-override :berkshelf, version: "2-0-stable"
 override :libedit,   version: "20130712-3.1"
 override :libtool,   version: "2.4.2"
 override :libxml2,   version: "2.9.1"

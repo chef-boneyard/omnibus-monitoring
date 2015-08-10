@@ -18,15 +18,15 @@
 name "opscode-monitoring-cookbooks"
 
 dependency "rsync"
-dependency "berkshelf2"
+dependency "berkshelf"
 
 project_name = project.name
 
-source :path => File.expand_path("files/cookbooks/#{project_name}", Omnibus.project_root)
+source :path => File.expand_path("files/cookbooks/#{project_name}", Omnibus::Config.project_root)
 
 build do
   command "mkdir -p #{install_dir}/embedded/cookbooks"
-  command "#{install_dir}/embedded/bin/berks install --berksfile=./Berksfile --path=#{install_dir}/embedded/cookbooks",
+  command "#{install_dir}/embedded/bin/berks vendor --berksfile=./Berksfile #{install_dir}/embedded/cookbooks",
           :env => { "RUBYOPT"         => nil,
                     "BUNDLE_BIN_PATH" => nil,
                     "BUNDLE_GEMFILE"  => nil,
