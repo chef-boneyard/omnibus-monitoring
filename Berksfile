@@ -6,5 +6,7 @@ cookbook 'apt', '~> 2.0'
 
 cookbook 'omnibus'
 
+cookbook 'opscode-monitoring',
+         path: File.expand_path("cookbooks/opscode-monitoring", File.dirname(__FILE__))
 # Uncomment to use the latest version of the Omnibus cookbook from GitHub
 # cookbook 'omnibus', github: 'opscode-cookbooks/omnibus'

@@ -1,6 +1,8 @@
 DEPENDENCIES
   apt (~> 2.0)
   omnibus
+  opscode-monitoring
+    path: cookbooks/opscode-monitoring
 
 GRAPH
   7-zip (1.0.2)
@@ -17,6 +19,7 @@ GRAPH
     homebrew (~> 1.5)
     windows (~> 1.30)
     wix (~> 1.1)
+  opscode-monitoring (0.1.0)
   windows (1.31.0)
     chef_handler (>= 0.0.0)
   wix (1.1.0)

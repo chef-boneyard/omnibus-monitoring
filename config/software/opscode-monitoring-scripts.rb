@@ -19,7 +19,7 @@ name "opscode-monitoring-scripts"
 
 dependency "rsync"
 
-source :path => File.expand_path("files/scripts", Omnibus.project_root)
+source :path => File.expand_path("files/scripts", Omnibus::Config.project_root)
 
 build do
   command "mkdir -p #{install_dir}/embedded/bin"
